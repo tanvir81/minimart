@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useCart } from "../../context/CartContext";
 import { useEffect, useState } from "react";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 
 function ItemsPage() {
   const { addToCart } = useCart();
@@ -27,7 +27,7 @@ function ItemsPage() {
         setLoading(false);
       });
   }, []);
-
+}
   const getSafeImage = (src) => {
     if (!src || typeof src !== "string" || src.trim() === "") {
       return `${API_BASE}/images/default.jpg`;
