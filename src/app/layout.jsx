@@ -12,38 +12,18 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-
-  //update lay out new
   return (
     <html lang="en" data-theme="light">
       <body>
-        {publishableKey ? (
-          <ClerkProvider publishableKey={publishableKey}>
-            <CartProvider>
-              <Navbar />
-              <GlobalLoader>{children}</GlobalLoader>
-              <Footer />
-              <Toaster position="top-right" />
-            </CartProvider>
-          </ClerkProvider>
-        ) : (
+        {/* ✅ Wrap providers in a client-safe way */}
+        <ClerkProvider>
           <CartProvider>
             <Navbar />
             <GlobalLoader>{children}</GlobalLoader>
             <Footer />
             <Toaster position="top-right" />
-            <div
-              style={{
-                padding: "1rem",
-                background: "#fff3cd",
-                color: "#856404",
-              }}
-            >
-              Guest mode enabled — authentication is disabled for this demo.
-            </div>
           </CartProvider>
-        )}
+        </ClerkProvider>
       </body>
     </html>
   );

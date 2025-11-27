@@ -33,7 +33,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <img src="/logo.png" alt="MiniMart Logo" className="h-18 w-auto" />
+          <h3>Mini Mart</h3>
         </Link>
 
         {/* Desktop links */}
