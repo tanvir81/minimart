@@ -26,6 +26,8 @@ export default function Navbar() {
     setMounted(true);
   }, []);
 
+  // Update
+
   return (
     <nav className="sticky top-0 bg-base-100 shadow z-50">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
