@@ -14,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-  //update
+  //update lay out
   return (
     <html lang="en" data-theme="light">
       <body>
