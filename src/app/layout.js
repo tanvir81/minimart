@@ -11,27 +11,13 @@ import {
 import "./globals.css";
 
 export default function RootLayout({ children }) {
-  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-
-  // If no Clerk key, skip ClerkProvider entirely
-  if (!publishableKey) {
-    return (
-      <html lang="en">
-        <body>
-          <header className="flex justify-end items-center p-4 gap-4 h-16 shadow">
-            <span className="text-gray-500 text-sm">Auth disabled</span>
-          </header>
-          {children}
-        </body>
-      </html>
-    );
-  }
-
-  // Normal Clerk setup when key exists
   return (
-    <ClerkProvider publishableKey={publishableKey}>
+    <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    >
       <html lang="en">
         <body>
+          {/* Header with Clerk auth buttons */}
           <header className="flex justify-end items-center p-4 gap-4 h-16 shadow">
             <SignedOut>
               <SignInButton />
@@ -45,6 +31,7 @@ export default function RootLayout({ children }) {
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
           </header>
+
           {children}
         </body>
       </html>
