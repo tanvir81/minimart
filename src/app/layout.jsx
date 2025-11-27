@@ -1,16 +1,4 @@
-import "./globals.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { CartProvider } from "../context/CartContext";
-import { ClerkProvider } from "@clerk/nextjs";
-import GlobalLoader from "../components/GlobalLoader";
-import { Toaster } from "react-hot-toast";
-
-export const metadata = {
-  title: "MiniMart",
-  description: "Your one-stop shop for everyday essentials",
-};
-("use client");
+"use client";
 
 import {
   ClerkProvider,
@@ -25,8 +13,8 @@ import "./globals.css";
 export default function RootLayout({ children }) {
   const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
+  // If no Clerk key
   if (!publishableKey) {
-    // Update
     return (
       <html lang="en">
         <body>
@@ -39,6 +27,7 @@ export default function RootLayout({ children }) {
     );
   }
 
+  // Normal Clerk setup when key exists
   return (
     <ClerkProvider publishableKey={publishableKey}>
       <html lang="en">
