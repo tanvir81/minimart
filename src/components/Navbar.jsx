@@ -21,7 +21,6 @@ export default function Navbar() {
 
   const { user } = useUser();
 
-  // ✅ Fix hydration mismatch
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);

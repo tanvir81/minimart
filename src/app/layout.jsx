@@ -15,12 +15,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
       <body>
+        {/* ✅ Wrap providers in a client-safe way */}
         <ClerkProvider>
           <CartProvider>
             <Navbar />
             <GlobalLoader>{children}</GlobalLoader>
             <Footer />
-
             <Toaster position="top-right" />
           </CartProvider>
         </ClerkProvider>
