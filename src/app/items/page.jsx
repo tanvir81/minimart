@@ -1,10 +1,10 @@
 "use client";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "../../context/CartContext";
 import { useEffect, useState } from "react";
 
+update;
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 
 function ItemsPage() {
@@ -27,7 +27,8 @@ function ItemsPage() {
         setLoading(false);
       });
   }, []);
-}
+
+  // helper function stays inside component
   const getSafeImage = (src) => {
     if (!src || typeof src !== "string" || src.trim() === "") {
       return `${API_BASE}/images/default.jpg`;
@@ -59,7 +60,6 @@ function ItemsPage() {
         Browse our latest items. Use search or filters to find what you need.
       </p>
 
-      {/* Product grid */}
       {loading ? (
         <p className="text-center text-gray-500">Loading products...</p>
       ) : filteredProducts.length === 0 ? (
@@ -72,7 +72,6 @@ function ItemsPage() {
                 key={item.id}
                 className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col"
               >
-                {/* ✅ Use plain <img> so localhost images load */}
                 <img
                   src={getSafeImage(item.image)}
                   alt={item.name}
@@ -102,7 +101,6 @@ function ItemsPage() {
                     </span>
                   )}
 
-                  {/* Buttons */}
                   <div className="flex gap-2 mt-auto pt-3">
                     <Link
                       href={`/items/${item.id}`}
@@ -122,7 +120,6 @@ function ItemsPage() {
             ))}
           </div>
 
-          {/* Show More Button */}
           {visibleCount < filteredProducts.length && (
             <div className="text-center mt-8">
               <button
