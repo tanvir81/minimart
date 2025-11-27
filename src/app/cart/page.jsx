@@ -1,12 +1,18 @@
 "use client";
+
+import dynamic from "next/dynamic";
 import { useCart } from "../../context/CartContext";
 
-export default function CartPage() {
-  const { cartItems, removeFromCart, updateQty, total } = useCart();
+function CartPage() {
+  const {
+    cartItems = [],
+    removeFromCart,
+    updateQty,
+    total = 0,
+  } = useCart() || {};
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Main content */}
       <main className="flex-grow py-16 px-[350px]">
         <h1 className="text-4xl text-center font-bold mb-8">Your Cart</h1>
 
@@ -70,3 +76,6 @@ export default function CartPage() {
     </div>
   );
 }
+
+// Export as client-only to avoid SSR errors
+export default dynamic(() => Promise.resolve(CartPage), { ssr: false });
