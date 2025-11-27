@@ -1,12 +1,25 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+// proxy.js
 
-export default clerkMiddleware();
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
-export const config = {
-  matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
-    "/(api|trpc)(.*)",
-  ],
+const backendUrl = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
+
+module.exports = function (app) {
+  // Always proxy API requests to your backend
+  app.use(
+    "/api",
+    createProxyMiddleware({
+      target: backendUrl,
+      changeOrigin: true,
+    })
+  );
+
+  // Optional: Clerk safeguard
+  if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
+    console.log("⚠ Clerk key missing — skipping Clerk proxy setup");
+    return;
+  }
+
+  // If Clerk is enabled, you could add extra routes here
+  // app.use("/clerk", someClerkProxyMiddleware);
 };
