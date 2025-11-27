@@ -27,3 +27,8 @@ It includes:
    git clone https://github.com/your-username/mini-mart.git
    cd mini-mart/backend
    ```
+```
+## Note Beacuse i use clerk without knowing that it needed live key for production deploy so my app broke.
+i am very disapointed but i did not fail i learn from it before use i should know pros ans cons.
+Thank You
+Tanvir Khan
