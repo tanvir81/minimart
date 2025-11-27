@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useCart } from "../../context/CartContext";
 import { useEffect, useState } from "react";
 
-update;
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 
 function ItemsPage() {
